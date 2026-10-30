@@ -1,7 +1,11 @@
+import Bannar from "@/components/home/Bannar";
 
 export default function HomePage() {
   return (
-    <div>Homea page</div>
+
+    <div>
+      <Bannar/>
+    </div>
 
 
   );

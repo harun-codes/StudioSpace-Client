@@ -1,12 +1,12 @@
+
 import Bannar from "@/components/home/Bannar";
+import CategorySection from "@/components/home/Category-section";
 
 export default function HomePage() {
   return (
-
-    <div>
-      <Bannar/>
-    </div>
-
-
+    <main>
+      <Bannar />
+      <CategorySection />
+    </main>
   );
 }

@@ -10,7 +10,7 @@ export default function HomePage() {
       <Bannar />
       <CategorySection />
       <HowItWorks />
-        <HostGuarantee />
+      <HostGuarantee />
     </main>
   );
 }

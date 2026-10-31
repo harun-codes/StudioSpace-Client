@@ -1,6 +1,9 @@
 
+import { Suspense } from "react";
+
 import Bannar from "@/components/home/Bannar";
 import CategorySection from "@/components/home/Category-section";
+import FeaturedStudios from "@/components/home/Featured-studios";
 import HostGuarantee from "@/components/home/host-guarantee";
 import HowItWorks from "@/components/home/how-it-works";
 
@@ -8,6 +11,19 @@ export default function HomePage() {
   return (
     <main>
       <Bannar />
+
+      <Suspense
+        fallback={
+          <div className="bg-[#F8F7F4] px-5 py-24 text-center">
+            <p className="text-sm font-medium text-[#777D7D]">
+              Discovering creative spaces...
+            </p>
+          </div>
+        }
+      >
+        <FeaturedStudios />
+      </Suspense>
+
       <CategorySection />
       <HowItWorks />
       <HostGuarantee />

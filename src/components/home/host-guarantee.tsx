@@ -44,7 +44,7 @@ export default function HostGuarantee() {
   return (
     <section
       id="host-guarantee"
-      className="overflow-hidden bg-[#202729] px-5 py-20 sm:px-8 lg:px-12 lg:py-24"
+      className="overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-24"
     >
       <div className="mx-auto max-w-[1440px]">
 
@@ -60,14 +60,14 @@ export default function HostGuarantee() {
               </p>
             </div>
 
-            <h2 className="max-w-xl text-4xl font-extrabold leading-[1.15] tracking-[-1.5px] text-white sm:text-5xl lg:text-6xl">
+            <h2 className="max-w-xl text-4xl font-extrabold leading-[1.15] tracking-[-1.5px] text-[#202729] sm:text-5xl lg:text-6xl">
               Create with confidence.
               <span className="mt-2 block text-[#F16F50]">
                 Host with peace of mind.
               </span>
             </h2>
 
-            <p className="mt-7 max-w-lg text-base leading-8 text-white/60 sm:text-lg">
+            <p className="mt-7 max-w-lg text-base leading-8 text-[#727A77] sm:text-lg">
               Great creative experiences begin with trust.
               StudioSpace is designed to support both hosts
               and creators with protection, transparency
@@ -86,12 +86,12 @@ export default function HostGuarantee() {
               />
             </Link>
 
-            <div className="mt-12 border-t border-white/10 pt-6">
-              <p className="text-sm font-semibold text-white">
+            <div className="mt-12 border-t border-[#202729]/10 pt-6">
+              <p className="text-sm font-semibold text-[#202729]">
                 Built for creators. Designed for hosts.
               </p>
 
-              <p className="mt-2 text-sm text-white/45">
+              <p className="mt-2 text-sm text-[#727A77]">
                 One community, better creative experiences.
               </p>
             </div>
@@ -106,26 +106,26 @@ export default function HostGuarantee() {
               return (
                 <div
                   key={item.number}
-                  className="group rounded-2xl border border-white/10 bg-white/[0.04] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#F16F50]/50 hover:bg-white/[0.07] sm:p-8"
+                  className="group rounded-2xl border border-[#202729]/10 bg-[#F5F3EE] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#F16F50]/50 hover:shadow-xl hover:shadow-[#202729]/5 sm:p-8"
                 >
 
                   <div className="flex items-center justify-between">
 
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F16F50]/10 text-[#F16F50] transition-all duration-300 group-hover:bg-[#F16F50] group-hover:text-white">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#F16F50] transition-all duration-300 group-hover:bg-[#F16F50] group-hover:text-white">
                       <Icon size={24} strokeWidth={1.8} />
                     </div>
 
-                    <span className="text-sm font-bold tracking-widest text-white/20">
+                    <span className="text-sm font-bold tracking-widest text-[#202729]/25">
                       {item.number}
                     </span>
 
                   </div>
 
-                  <h3 className="mt-8 text-xl font-bold text-white">
+                  <h3 className="mt-8 text-xl font-bold text-[#202729]">
                     {item.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-7 text-white/55">
+                  <p className="mt-4 text-sm leading-7 text-[#727A77]">
                     {item.description}
                   </p>
 

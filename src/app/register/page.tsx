@@ -118,6 +118,12 @@ const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
   router.push("/login");
 };
 
+const handleGoogleRegister = async () => {
+     const data = await authClient.signIn.social({
+    provider: "google",
+  });
+  
+}
 
     return (
         <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-[#F5F3EE] px-4 py-6 sm:px-6">
@@ -334,13 +340,9 @@ const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
 
                             <Field>
                                 <Button
+                                onClick={handleGoogleRegister}
                                     variant="outline"
                                     type="button"
-                                    onClick={() =>
-                                        setMessage(
-                                            "Google registration will be connected next."
-                                        )
-                                    }
                                     className="h-10 w-full rounded-lg border-[#EAE7E2] bg-white text-sm font-semibold text-[#202729] hover:border-[#F16F50] hover:bg-[#F8F7F4]"
                                 >
                                     <svg

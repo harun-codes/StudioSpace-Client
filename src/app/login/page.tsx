@@ -57,6 +57,14 @@ export default function LoginPage() {
 
   };
 
+  
+const handleGoogleLogin = async () => {
+     const data = await authClient.signIn.social({
+    provider: "google",
+  });
+  console.log("Google login data:", data);
+}
+
   return (
     <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-[#F5F3EE] px-4 py-6 sm:px-6">
       <Card className="w-full max-w-[520px] gap-0 rounded-2xl border border-[#EAE7E2] bg-white py-0 shadow-lg shadow-[#202729]/5">
@@ -207,13 +215,10 @@ export default function LoginPage() {
 
               <Field>
                 <Button
+                onClick={handleGoogleLogin}
                   variant="outline"
                   type="button"
-                  onClick={() =>
-                    setMessage(
-                      "Google login will be connected to Better Auth next."
-                    )
-                  }
+                 
                   className="h-10 w-full rounded-lg border-[#EAE7E2] bg-white text-sm font-semibold text-[#202729] hover:border-[#F16F50] hover:bg-[#F8F7F4]"
                 >
                   <svg

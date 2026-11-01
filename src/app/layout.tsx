@@ -8,6 +8,10 @@ import Footer from "@/components/layout/footer";
 import { Toaster } from "sonner";
 
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "StudioSpace | Creative Spaces",
@@ -21,7 +25,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body className="min-h-screen bg-[#F5F3EE] text-[#202729] antialiased">
         <Navbar />
         {children}

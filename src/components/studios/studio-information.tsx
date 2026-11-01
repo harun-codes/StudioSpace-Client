@@ -27,6 +27,7 @@ export type StudioDetails = Studio & {
   ownerName?: string;
   ownerEmail?: string;
   reviews?: StudioReview[];
+  
 };
 
 type Props = {

@@ -30,6 +30,7 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 
+
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
@@ -50,9 +51,8 @@ export default function LoginPage() {
     if(data) {
         redirect('/')
     }
-     if (error) {
+     if(error) {
             console.error("Error registering user:", error);
-
      }
 
   };

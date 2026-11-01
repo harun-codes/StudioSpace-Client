@@ -30,10 +30,11 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 
 export default function RegisterPage() {
+    const router = useRouter();
 
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -56,29 +57,67 @@ export default function RegisterPage() {
 
 
 
-    const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const user = Object.fromEntries(formData.entries()) as {
-            name: string;
-            email: string;
-            image?: string;
-            password: string;
-        };
+const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  setMessage("");
 
-        const { data, error } = await authClient.signUp.email({
-            ...user
+  const formData = new FormData(event.currentTarget);
 
-        })
-        if (data) {
-            redirect("/login");
-        }
-        if (error) {
-            console.error("Error registering user:", error);
+  const name = String(formData.get("name") || "").trim();
+  const email = String(formData.get("email") || "").trim();
+  const image = String(formData.get("image") || "").trim();
+  const userPassword = String(formData.get("password") || "");
 
-        }
+  if (!name || !email || !userPassword) {
+    setMessage("Please fill in all required fields.");
+    return;
+  }
 
-    };
+  const isValidPassword =
+    userPassword.length >= 8 &&
+    /[A-Z]/.test(userPassword) &&
+    /[a-z]/.test(userPassword);
+
+  if (!isValidPassword) {
+    setMessage(
+      "Password must contain at least 8 characters, one uppercase letter and one lowercase letter."
+    );
+    return;
+  }
+
+  try {
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      password: userPassword,
+      ...(image ? { image } : {}),
+    });
+
+    if (error) {
+      console.error("Registration error:", error);
+      setMessage(error.message || "Registration failed.");
+      return;
+    }
+
+    if (!data) {
+      setMessage("Registration could not be confirmed. Please try again.");
+      return;
+    }
+  } catch (error) {
+    console.error("Registration exception:", error);
+
+    setMessage(
+      error instanceof Error
+        ? error.message
+        : "Unable to connect to the authentication server."
+    );
+
+    return;
+  }
+
+  router.push("/login");
+};
+
 
     return (
         <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-[#F5F3EE] px-4 py-6 sm:px-6">

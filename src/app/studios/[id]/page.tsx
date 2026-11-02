@@ -142,8 +142,10 @@ async function StudioDetailsContent({ params }: Props) {
 
                 <div className="lg:sticky lg:top-28">
                     <StudioBooking
+                        studioId={studio._id.toString()}
+                        studioTitle={studio.title}
                         hourlyRate={studio.hourlyRate}
-                        securityDeposit={studio.securityDeposit ?? 0}
+                        securityDeposit={studio.securityDeposit}
                     />
                 </div>
             </div>

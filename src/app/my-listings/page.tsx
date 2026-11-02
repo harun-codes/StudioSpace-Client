@@ -4,13 +4,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import {
     ArrowUpRight,
     Building2,
     Eye,
     MapPin,
-    Pencil,
     Plus,
     Trash2,
     Users,
@@ -19,8 +19,10 @@ import {
 
 import { authClient } from "@/lib/auth-client";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import UpdateEdit from "@/components/studios/update-edit";
+import DeleteStudio from "@/components/studios/delete-studio";
 
 type Studio = {
     _id: string;
@@ -39,6 +41,7 @@ type Studio = {
 };
 
 export default function MyListingsPage() {
+    const router = useRouter();
     const { data: session, isPending } = authClient.useSession();
 
     const userEmail = session?.user?.email?.trim().toLowerCase();
@@ -105,6 +108,16 @@ export default function MyListingsPage() {
 
         return () => controller.abort();
     }, [userEmail, isPending]);
+
+    const handleStudioUpdated = (updatedStudio: Studio) => {
+        setStudios((previous) =>
+            previous.map((studio) =>
+                studio._id === updatedStudio._id
+                    ? { ...studio, ...updatedStudio }
+                    : studio
+            )
+        );
+    };
 
     return (
         <main className="min-h-screen bg-[#F5F3EE] px-4 py-10 sm:px-8 lg:py-14">
@@ -174,11 +187,12 @@ export default function MyListingsPage() {
                         <p className="text-sm text-[#777D7D]">
                             Your studio listings are associated with your account email.
                         </p>
+
                         <Link
                             href="/login"
                             className={cn(
                                 buttonVariants(),
-                                "mt-6 bg-[#F16F50] font-semibold text-white hover:bg-[#DF5D40]"
+                                "mt-6 bg-[#F16F50] text-white hover:bg-[#DF5D40]"
                             )}
                         >
                             Go to Login
@@ -209,6 +223,7 @@ export default function MyListingsPage() {
                             Create your first studio listing and start sharing
                             your creative space with others.
                         </p>
+
                         <Link
                             href="/add-studio"
                             className={cn(
@@ -218,7 +233,8 @@ export default function MyListingsPage() {
                         >
                             Add Your First Studio
                             <ArrowUpRight size={17} />
-                        </Link>                    </Card>
+                        </Link>
+                    </Card>
                 ) : (
                     <div className="flex flex-col gap-4">
                         {studios.map((studio) => (
@@ -254,11 +270,13 @@ export default function MyListingsPage() {
 
                                         <span
                                             className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${studio.isActive === false
-                                                ? "bg-red-50 text-red-600"
-                                                : "bg-green-50 text-green-700"
+                                                    ? "bg-red-50 text-red-600"
+                                                    : "bg-green-50 text-green-700"
                                                 }`}
                                         >
-                                            {studio.isActive === false ? "Inactive" : "Active"}
+                                            {studio.isActive === false
+                                                ? "Inactive"
+                                                : "Active"}
                                         </span>
                                     </div>
 
@@ -291,7 +309,10 @@ export default function MyListingsPage() {
                                     </div>
 
                                     <div className="mt-3 flex items-center gap-2 text-sm text-[#777D7D]">
-                                        <UserRound size={15} className="shrink-0" />
+                                        <UserRound
+                                            size={15}
+                                            className="shrink-0"
+                                        />
 
                                         <span className="line-clamp-1">
                                             Hosted by {studio.ownerName || "Studio Host"}
@@ -299,7 +320,7 @@ export default function MyListingsPage() {
                                     </div>
                                 </CardContent>
 
-                                <div className="flex shrink-0 flex-col justify-between gap-5 border-t border-[#EAE7E2] px-5 py-5 sm:w-[250px] sm:border-l sm:border-t-0 sm:items-end sm:px-5">
+                                <div className="flex shrink-0 flex-col justify-between gap-5 border-t border-[#EAE7E2] px-5 py-5 sm:w-[250px] sm:items-end sm:border-l sm:border-t-0 sm:px-5">
                                     <div className="sm:text-right">
                                         <p className="text-xs font-medium text-[#929797]">
                                             Hourly Rate
@@ -318,34 +339,30 @@ export default function MyListingsPage() {
                                             type="button"
                                             variant="outline"
                                             size="sm"
-                                            disabled
-                                            className="h-9 gap-1 rounded-lg border-[#EAE7E2] px-2.5 text-xs font-semibold text-[#202729]"
+                                            onClick={() =>
+                                                router.push(`/studios/${studio._id}`)
+                                            }
+                                            className="h-9 gap-1 rounded-lg border-[#EAE7E2] px-2.5 text-xs font-semibold text-[#202729] hover:border-[#F16F50] hover:text-[#F16F50]"
                                         >
                                             <Eye size={15} />
                                             View
                                         </Button>
 
-                                        <Button
-                                            type="button"
-                                            variant="outline"
-                                            size="sm"
-                                            disabled
-                                            className="h-9 gap-1 rounded-lg border-[#EAE7E2] px-2.5 text-xs font-semibold text-[#202729]"
-                                        >
-                                            <Pencil size={15} />
-                                            Edit
-                                        </Button>
+                                        <UpdateEdit
+                                            studio={studio}
+                                            onUpdated={handleStudioUpdated}
+                                        />
 
-                                        <Button
-                                            type="button"
-                                            variant="outline"
-                                            size="sm"
-                                            disabled
-                                            className="h-9 gap-1 rounded-lg border-red-200 px-2.5 text-xs font-semibold text-red-600"
-                                        >
-                                            <Trash2 size={15} />
-                                            Delete
-                                        </Button>
+                                        <DeleteStudio
+                                            studioId={studio._id}
+                                            studioTitle={studio.title}
+                                            onDeleted={(deletedId) => {
+                                                setStudios((previous) =>
+                                                    previous.filter((item) => item._id !== deletedId)
+                                                );
+                                            }}
+                                        />
+
                                     </div>
                                 </div>
                             </Card>

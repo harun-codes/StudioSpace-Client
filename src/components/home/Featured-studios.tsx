@@ -34,7 +34,7 @@ export default async function FeaturedStudios() {
   return (
     <section
       id="featured-studios"
-      className="bg-[#F8F7F4] px-5 py-20 sm:px-8 lg:px-12 lg:py-24"
+      className="bg-[#F8F7F4] px-5 py-20 transition-colors duration-300 dark:bg-[#12191C] sm:px-8 lg:px-12 lg:py-24"
     >
       <div className="mx-auto max-w-[1440px]">
         <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -47,14 +47,14 @@ export default async function FeaturedStudios() {
               </p>
             </div>
 
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#202729] sm:text-5xl lg:text-6xl">
+            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#202729] transition-colors duration-300 dark:text-[#E6E8E8] sm:text-5xl lg:text-6xl">
               Spaces worth
               <span className="block text-[#F16F50]">
                 discovering.
               </span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-base leading-8 text-[#777D7D] sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-8 text-[#777D7D] dark:text-[#B5BDBA] sm:text-lg">
               Explore some of the best creative spaces available
               for your next photography session, film production,
               podcast or music project.
@@ -63,7 +63,7 @@ export default async function FeaturedStudios() {
 
           <Link
             href="/studios"
-            className="group inline-flex w-fit items-center gap-3 border-b border-[#202729]/30 pb-2 text-sm font-bold text-[#202729] transition-colors hover:border-[#F16F50] hover:text-[#F16F50]"
+            className="group inline-flex w-fit items-center gap-3 border-b border-[#202729]/30 pb-2 text-sm font-bold text-[#202729] transition-colors hover:border-[#F16F50] hover:text-[#F16F50] dark:border-white/30 dark:text-[#E6E8E8] dark:hover:border-[#F16F50]"
           >
             View All Studios
 
@@ -75,12 +75,12 @@ export default async function FeaturedStudios() {
         </div>
 
         {error ? (
-          <div className="rounded-2xl border border-red-200 bg-white px-6 py-16 text-center">
-            <h3 className="text-xl font-bold text-[#202729]">
+          <div className="rounded-2xl border border-red-200 bg-white px-6 py-16 text-center transition-colors duration-300 dark:border-red-900/50 dark:bg-[#1C2629]">
+            <h3 className="text-xl font-bold text-[#202729] dark:text-[#E6E8E8]">
               Unable to load featured studios
             </h3>
 
-            <p className="mt-3 text-sm text-[#929797]">
+            <p className="mt-3 text-sm text-[#929797] dark:text-[#B5BDBA]">
               Please try again later.
             </p>
           </div>
@@ -94,12 +94,12 @@ export default async function FeaturedStudios() {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-[#DAD6CF] bg-white px-6 py-16 text-center">
-            <h3 className="text-xl font-bold text-[#202729]">
+          <div className="rounded-2xl border border-dashed border-[#DAD6CF] bg-white px-6 py-16 text-center transition-colors duration-300 dark:border-[#374347] dark:bg-[#1C2629]">
+            <h3 className="text-xl font-bold text-[#202729] dark:text-[#E6E8E8]">
               No featured studios available
             </h3>
 
-            <p className="mt-3 text-sm text-[#929797]">
+            <p className="mt-3 text-sm text-[#929797] dark:text-[#B5BDBA]">
               New creative spaces will appear here soon.
             </p>
 

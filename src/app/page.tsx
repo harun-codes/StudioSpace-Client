@@ -9,13 +9,13 @@ import HowItWorks from "@/components/home/how-it-works";
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="min-h-screen bg-background text-foreground">
       <Bannar />
 
       <Suspense
         fallback={
-          <div className="bg-[#F8F7F4] px-5 py-24 text-center">
-            <p className="text-sm font-medium text-[#777D7D]">
+          <div className="bg-[#F8F7F4] px-5 py-24 text-center dark:bg-[#12191C]">
+            <p className="text-sm font-medium text-[#777D7D] dark:text-[#B5BDBA]">
               Discovering creative spaces...
             </p>
           </div>

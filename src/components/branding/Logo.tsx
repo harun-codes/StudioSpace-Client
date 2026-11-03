@@ -38,7 +38,7 @@ export default function Logo() {
         </svg>
       </span>
 
-      <span className="text-[22px] font-extrabold tracking-[-1.2px] text-[#202729] sm:text-[24px]">
+      <span className="text-[22px] font-extrabold tracking-[-1.2px] text-[#202729] transition-colors duration-300 dark:text-white sm:text-[24px]">
         StudioSpace<span className="text-[#F16F50]">.</span>
       </span>
     </Link>

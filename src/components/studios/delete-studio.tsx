@@ -4,6 +4,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { AlertTriangle, Trash2 } from "lucide-react";
+import { apiClient } from "@/lib/api-client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -36,8 +37,8 @@ export default function DeleteStudio({
     setIsDeleting(true);
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/my-listings/${studioId}`,
+      const response = await apiClient(
+        `/my-listings/${studioId}`,
         {
           method: "DELETE",
         }
@@ -79,7 +80,7 @@ export default function DeleteStudio({
         variant="outline"
         size="sm"
         onClick={() => setOpen(true)}
-        className="h-9 gap-1 rounded-lg border-red-200 px-2.5 text-xs font-semibold text-red-600 hover:border-red-500 hover:bg-red-50 hover:text-red-700"
+        className="h-9 gap-1 rounded-lg border-red-200 px-2.5 text-xs font-semibold text-red-600 hover:border-red-500 hover:bg-red-50 hover:text-red-700 dark:border-red-900/60 dark:bg-transparent dark:text-red-400 dark:hover:border-red-500 dark:hover:bg-red-500/10 dark:hover:text-red-300"
       >
         <Trash2 size={15} />
         Delete
@@ -93,19 +94,19 @@ export default function DeleteStudio({
           }
         }}
       >
-        <AlertDialogContent className="w-[calc(100%-2rem)] max-w-[440px] rounded-2xl border border-[#EAE7E2] bg-white p-7 shadow-xl">
+        <AlertDialogContent className="max-h-[85vh] w-[calc(100%-2rem)] max-w-[440px] overflow-y-auto rounded-2xl border border-[#EAE7E2] bg-white p-5 shadow-xl dark:border-[#374347] dark:bg-[#1C2629] sm:p-7">
           <AlertDialogHeader className="gap-3">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-red-600">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-red-600 dark:bg-red-500/15 dark:text-red-400">
               <AlertTriangle size={27} strokeWidth={1.8} />
             </div>
 
-            <AlertDialogTitle className="text-xl font-extrabold text-[#202729]">
+            <AlertDialogTitle className="text-xl font-extrabold text-[#202729] dark:text-white">
               Delete Studio Listing?
             </AlertDialogTitle>
 
-            <AlertDialogDescription className="text-sm leading-7 text-[#777D7D]">
+            <AlertDialogDescription className="break-words text-sm leading-7 text-[#777D7D] dark:text-[#B5BDBA]">
               Are you sure you want to delete{" "}
-              <span className="font-bold text-[#202729]">
+              <span className="font-bold text-[#202729] dark:text-white">
                 {studioTitle}
               </span>
               ? This studio will be permanently removed from your
@@ -113,10 +114,10 @@ export default function DeleteStudio({
             </AlertDialogDescription>
           </AlertDialogHeader>
 
-          <AlertDialogFooter className="mt-5 gap-3 sm:justify-end">
+          <AlertDialogFooter className="mt-5 flex-col-reverse gap-3 sm:flex-row sm:justify-end">
             <AlertDialogCancel
               disabled={isDeleting}
-              className="h-10 rounded-lg border-[#EAE7E2] px-5 font-semibold text-[#202729]"
+              className="h-10 w-full rounded-lg border-[#EAE7E2] px-5 font-semibold text-[#202729] hover:bg-[#F5F3EE] dark:border-[#465457] dark:bg-[#263437] dark:text-white dark:hover:bg-[#334347] sm:w-auto"
             >
               Cancel
             </AlertDialogCancel>
@@ -126,7 +127,7 @@ export default function DeleteStudio({
               variant="destructive"
               onClick={handleDelete}
               disabled={isDeleting}
-              className="h-10 rounded-lg bg-red-600 px-5 font-semibold text-white hover:bg-red-700"
+              className="h-10 w-full rounded-lg bg-red-600 px-5 font-semibold text-white hover:bg-red-700 dark:bg-red-600 dark:text-white dark:hover:bg-red-700 sm:w-auto"
             >
               <Trash2 size={16} />
               {isDeleting ? "Deleting..." : "Delete Studio"}

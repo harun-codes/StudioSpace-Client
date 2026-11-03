@@ -49,7 +49,7 @@ export default function CategorySection() {
   return (
     <section
       id="categories"
-      className="bg-[#F5F3EE] px-5 py-20 sm:px-8 lg:px-12 lg:py-24"
+      className="bg-[#F5F3EE] px-5 py-20 transition-colors duration-300 dark:bg-[#12191C] sm:px-8 lg:px-12 lg:py-24"
     >
       <div className="mx-auto max-w-[1440px]">
         <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -62,14 +62,14 @@ export default function CategorySection() {
               </p>
             </div>
 
-            <h2 className="text-4xl font-extrabold leading-tight tracking-[-1.5px] text-[#202729] sm:text-5xl lg:text-6xl">
+            <h2 className="text-4xl font-extrabold leading-tight tracking-[-1.5px] text-[#202729] transition-colors duration-300 dark:text-[#E6E8E8] sm:text-5xl lg:text-6xl">
               Find your kind of
               <span className="block text-[#F16F50]">
                 creative space.
               </span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-base leading-8 text-[#727A77] sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-8 text-[#727A77] transition-colors duration-300 dark:text-[#B5BDBA] sm:text-lg">
               From professional photography studios to creative
               recording spaces, discover the perfect environment
               for bringing your ideas to life.
@@ -78,7 +78,7 @@ export default function CategorySection() {
 
           <Link
             href="/studios"
-            className="group inline-flex w-fit items-center gap-3 border-b border-[#202729]/30 pb-2 text-sm font-bold text-[#202729] transition-colors hover:border-[#F16F50] hover:text-[#F16F50]"
+            className="group inline-flex w-fit items-center gap-3 border-b border-[#202729]/30 pb-2 text-sm font-bold text-[#202729] transition-colors hover:border-[#F16F50] hover:text-[#F16F50] dark:border-white/30 dark:text-[#E6E8E8] dark:hover:border-[#F16F50]"
           >
             Explore All Spaces
 
@@ -95,7 +95,7 @@ export default function CategorySection() {
               key={category.id}
               href={`/studios?category=${encodeURIComponent(category.value)}`}
               aria-label={`Explore ${category.title}`}
-              className="group relative h-[340px] overflow-hidden rounded-2xl bg-[#202729] sm:h-[380px] xl:h-[400px]"
+              className="group relative h-[340px] overflow-hidden rounded-2xl bg-[#202729] transition-colors duration-300 dark:bg-[#1C2629] sm:h-[380px] xl:h-[400px]"
             >
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"

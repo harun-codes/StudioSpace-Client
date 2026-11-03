@@ -44,14 +44,11 @@ export default function HostGuarantee() {
   return (
     <section
       id="host-guarantee"
-      className="overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-24"
+      className="overflow-hidden bg-white px-5 py-16 transition-colors duration-300 dark:bg-[#12191C] sm:px-8 sm:py-20 lg:px-12 lg:py-24"
     >
       <div className="mx-auto max-w-[1440px]">
-
-        <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20">
-
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20">
           <div>
-
             <div className="mb-6 flex items-center gap-3">
               <span className="h-[2px] w-9 bg-[#F16F50]" />
 
@@ -60,14 +57,14 @@ export default function HostGuarantee() {
               </p>
             </div>
 
-            <h2 className="max-w-xl text-4xl font-extrabold leading-[1.15] tracking-[-1.5px] text-[#202729] sm:text-5xl lg:text-6xl">
+            <h2 className="max-w-xl text-3xl font-extrabold leading-[1.15] tracking-[-1.5px] text-[#202729] transition-colors duration-300 dark:text-[#E6E8E8] sm:text-5xl lg:text-6xl">
               Create with confidence.
               <span className="mt-2 block text-[#F16F50]">
                 Host with peace of mind.
               </span>
             </h2>
 
-            <p className="mt-7 max-w-lg text-base leading-8 text-[#727A77] sm:text-lg">
+            <p className="mt-7 max-w-lg text-base leading-8 text-[#727A77] dark:text-[#B5BDBA] sm:text-lg">
               Great creative experiences begin with trust.
               StudioSpace is designed to support both hosts
               and creators with protection, transparency
@@ -76,7 +73,7 @@ export default function HostGuarantee() {
 
             <Link
               href="/register"
-              className="group mt-9 inline-flex items-center gap-3 rounded-xl bg-[#F16F50] px-7 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#DF5D40] hover:shadow-xl hover:shadow-[#F16F50]/20"
+              className="group mt-8 inline-flex items-center gap-3 rounded-xl bg-[#F16F50] px-6 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#DF5D40] hover:shadow-xl hover:shadow-[#F16F50]/20 sm:mt-9 sm:px-7"
             >
               Become a Host
 
@@ -86,59 +83,52 @@ export default function HostGuarantee() {
               />
             </Link>
 
-            <div className="mt-12 border-t border-[#202729]/10 pt-6">
-              <p className="text-sm font-semibold text-[#202729]">
+            <div className="mt-10 border-t border-[#202729]/10 pt-6 dark:border-white/10 sm:mt-12">
+              <p className="text-sm font-semibold text-[#202729] dark:text-[#E6E8E8]">
                 Built for creators. Designed for hosts.
               </p>
 
-              <p className="mt-2 text-sm text-[#727A77]">
+              <p className="mt-2 text-sm text-[#727A77] dark:text-[#B5BDBA]">
                 One community, better creative experiences.
               </p>
             </div>
-
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
+          <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 sm:gap-5">
             {assurances.map((item) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={item.number}
-                  className="group rounded-2xl border border-[#202729]/10 bg-[#F5F3EE] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#F16F50]/50 hover:shadow-xl hover:shadow-[#202729]/5 sm:p-8"
+                  className="group flex h-full flex-col rounded-2xl border border-[#202729]/10 bg-[#F5F3EE] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#F16F50]/50 hover:shadow-xl hover:shadow-[#202729]/5 dark:border-[#374347] dark:bg-[#1C2629] dark:hover:border-[#F16F50]/50 dark:hover:shadow-black/20 sm:p-7 lg:p-8"
                 >
-
-                  <div className="flex items-center justify-between">
-
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#F16F50] transition-all duration-300 group-hover:bg-[#F16F50] group-hover:text-white">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#F16F50] transition-all duration-300 group-hover:bg-[#F16F50] group-hover:text-white dark:bg-[#233034] dark:text-[#F16F50] dark:group-hover:bg-[#F16F50] dark:group-hover:text-white">
                       <Icon size={24} strokeWidth={1.8} />
                     </div>
 
-                    <span className="text-sm font-bold tracking-widest text-[#202729]/25">
+                    <span className="text-sm font-bold tracking-widest text-[#202729]/25 dark:text-white/25">
                       {item.number}
                     </span>
-
                   </div>
 
-                  <h3 className="mt-8 text-xl font-bold text-[#202729]">
+                  <h3 className="mt-7 text-xl font-bold text-[#202729] dark:text-[#E6E8E8] sm:mt-8">
                     {item.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-7 text-[#727A77]">
+                  <p className="mt-4 text-sm leading-7 text-[#727A77] dark:text-[#B5BDBA]">
                     {item.description}
                   </p>
 
-                  <div className="mt-7 h-[2px] w-8 bg-[#F16F50] transition-all duration-300 group-hover:w-16" />
-
+                  <div className="mb-1 mt-auto pt-7">
+                    <div className="h-[2px] w-8 bg-[#F16F50] transition-all duration-300 group-hover:w-16" />
+                  </div>
                 </div>
               );
             })}
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

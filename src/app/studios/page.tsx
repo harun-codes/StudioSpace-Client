@@ -121,11 +121,11 @@ async function StudiosContent({ searchParams }: Props) {
       />
 
       <div className="mb-7 mt-12">
-        <h2 className="text-2xl font-extrabold text-[#202729] sm:text-3xl">
+        <h2 className="text-2xl font-extrabold text-[#202729] dark:text-white sm:text-3xl">
           Explore Studios
         </h2>
 
-        <p className="mt-2 text-sm text-[#929797]">
+        <p className="mt-2 text-sm text-[#929797] dark:text-[#A1AAAA]">
           {error
             ? "Unable to load studios"
             : `Showing ${filteredStudios.length} studios`}
@@ -133,28 +133,28 @@ async function StudiosContent({ searchParams }: Props) {
       </div>
 
       {error ? (
-        <div className="rounded-2xl border border-red-200 bg-white px-6 py-16 text-center">
-          <h3 className="text-xl font-bold text-[#202729]">
+        <div className="rounded-2xl border border-red-200 bg-white px-6 py-16 text-center dark:border-red-900 dark:bg-[#1C2629]">
+          <h3 className="text-xl font-bold text-[#202729] dark:text-white">
             Unable to load studios
           </h3>
 
-          <p className="mt-3 text-sm text-[#777D7D]">
+          <p className="mt-3 text-sm text-[#777D7D] dark:text-[#A1AAAA]">
             Please check your backend server and try again.
           </p>
         </div>
       ) : filteredStudios.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredStudios.map((studio) => (
             <StudioCard key={studio._id} studio={studio} />
           ))}
         </div>
       ) : (
-        <div className="rounded-2xl border border-dashed border-[#DAD6CF] bg-white px-6 py-20 text-center">
-          <h3 className="text-xl font-bold text-[#202729]">
+        <div className="rounded-2xl border border-dashed border-[#DAD6CF] bg-white px-6 py-20 text-center dark:border-[#354346] dark:bg-[#1C2629]">
+          <h3 className="text-xl font-bold text-[#202729] dark:text-white">
             No studios found
           </h3>
 
-          <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-[#929797]">
+          <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-[#929797] dark:text-[#A1AAAA]">
             Try another search or select a different category.
           </p>
         </div>
@@ -166,23 +166,23 @@ async function StudiosContent({ searchParams }: Props) {
 function StudiosLoading() {
   return (
     <div className="space-y-10">
-      <div className="h-48 animate-pulse rounded-2xl bg-[#EAE7E2]" />
+      <div className="h-48 animate-pulse rounded-2xl bg-[#EAE7E2] dark:bg-[#263437]" />
 
       <div className="space-y-4">
-        <div className="h-8 w-56 animate-pulse rounded bg-[#EAE7E2]" />
+        <div className="h-8 w-56 animate-pulse rounded bg-[#EAE7E2] dark:bg-[#263437]" />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}
-              className="overflow-hidden rounded-2xl bg-white"
+              className="overflow-hidden rounded-2xl bg-white dark:bg-[#1C2629]"
             >
-              <div className="aspect-[4/3] animate-pulse bg-[#EAE7E2]" />
+              <div className="aspect-[4/3] animate-pulse bg-[#EAE7E2] dark:bg-[#263437]" />
 
               <div className="space-y-3 p-5">
-                <div className="h-5 w-3/4 animate-pulse rounded bg-[#EAE7E2]" />
-                <div className="h-4 w-1/2 animate-pulse rounded bg-[#EAE7E2]" />
-                <div className="h-8 w-1/3 animate-pulse rounded bg-[#EAE7E2]" />
+                <div className="h-5 w-3/4 animate-pulse rounded bg-[#EAE7E2] dark:bg-[#263437]" />
+                <div className="h-4 w-1/2 animate-pulse rounded bg-[#EAE7E2] dark:bg-[#263437]" />
+                <div className="h-8 w-1/3 animate-pulse rounded bg-[#EAE7E2] dark:bg-[#263437]" />
               </div>
             </div>
           ))}
@@ -194,10 +194,10 @@ function StudiosLoading() {
 
 export default function StudiosPage({ searchParams }: Props) {
   return (
-    <main className="min-h-screen bg-[#F8F7F4]">
+    <main className="min-h-screen bg-[#F8F7F4] transition-colors duration-300 dark:bg-[#111819]">
       <StudioHeader />
 
-      <section className="mx-auto max-w-[1440px] px-5 py-12 sm:px-8 lg:py-16">
+      <section className="mx-auto max-w-[1440px] px-4 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-16">
         <Suspense fallback={<StudiosLoading />}>
           <StudiosContent searchParams={searchParams} />
         </Suspense>

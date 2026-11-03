@@ -2,8 +2,7 @@
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const API_URL = (
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:5000"
+  process.env.NEXT_PUBLIC_API_URL ?? ""
 ).replace(/\/+$/, "");
 
 export const apiClient = async (

@@ -56,7 +56,7 @@ async function StudiosContent({ searchParams }: Props) {
   let error = "";
 
   try {
-    const response = await fetch("http://localhost:5000/studios", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios`, {
       cache: "no-store",
     });
 

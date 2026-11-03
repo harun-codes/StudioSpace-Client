@@ -10,7 +10,7 @@ export default async function FeaturedStudios() {
   let error = false;
 
   try {
-    const res = await fetch("http://localhost:5000/featured-studios", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/featured-studios`, {
       cache: "no-store",
     });
 

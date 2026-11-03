@@ -42,8 +42,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Suspense fallback={<div className="h-20" />}>
-  <Navbar />
-</Suspense>
+            <Navbar />
+          </Suspense>
           {children}
           <Footer />
           <Toaster />

@@ -53,7 +53,7 @@ async function StudioDetailsContent({ params }: Props) {
 
   try {
     response = await fetch(
-      `http://localhost:5000/studios/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/studios/${id}`,
       {
         cache: "no-store",
       }

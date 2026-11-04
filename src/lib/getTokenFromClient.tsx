@@ -1,16 +1,8 @@
+import { authClient } from "./auth-client"
 
-"use client";
+export const getTokenFromClient = async() => {
+ const {data, error} = await authClient.token()   
+    const token = data?.token
 
-import { authClient } from "@/lib/auth-client";
-
-export async function getTokenFromClient(): Promise<string> {
-  const { data, error } = await authClient.token();
-
-  if (error || !data?.token) {
-    throw new Error(
-      "Your session has expired. Please sign in again."
-    );
-  }
-
-  return data.token;
+    return token;
 }

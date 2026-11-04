@@ -104,6 +104,7 @@ export default function LoginPage() {
     useState(false);
 
   const [message, setMessage] = useState("");
+
   const [isSubmitting, setIsSubmitting] =
     useState(false);
 
@@ -118,6 +119,7 @@ export default function LoginPage() {
     }
 
     router.replace(getSafeRedirectPath());
+    router.refresh();
   }, [isPending, isAuthenticated, router]);
 
   const handleLogin = async (
@@ -141,7 +143,7 @@ export default function LoginPage() {
 
     const email = String(
       formData.get("email") || ""
-    ).trim();
+    ).trim().toLowerCase();
 
     const password = String(
       formData.get("password") || ""

@@ -9,12 +9,13 @@ import {
   Wallet,
   CheckCircle2,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { apiClient } from "@/lib/api-client";
-import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 import {
   Dialog,
   DialogContent,
@@ -23,6 +24,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
 import {
   Field,
   FieldGroup,
@@ -86,40 +88,93 @@ export default function BookingModal({
     if (isSubmitting) return;
 
     if (!session?.user) {
-      toast.error("Please login to book a studio.");
+      const returnTo =
+        `${window.location.pathname}${window.location.search}`;
+
+      router.push(
+        `/login?callbackURL=${encodeURIComponent(returnTo)}`
+      );
+
       return;
     }
 
-    if (!bookingDate || !startTime || !endTime || duration <= 0) {
+    if (
+      !bookingDate ||
+      !startTime ||
+      !endTime ||
+      duration <= 0
+    ) {
       toast.error("Please select a valid booking date and time.");
       return;
     }
 
-    const bookingData = {
-      studioId,
-      bookingDate,
-      startTime,
-      endTime,
-      userName: session.user.name,
-      userEmail: session.user.email,
-    };
+    if (
+      !studioId ||
+      !Number.isFinite(hourlyRate) ||
+      hourlyRate <= 0
+    ) {
+      toast.error("Invalid studio information.");
+      return;
+    }
 
     setIsSubmitting(true);
 
     try {
+      const tokenResult = await authClient.token();
+
+      const token = tokenResult.data?.token;
+
+      if (tokenResult.error || !token) {
+        toast.error(
+          "Your session has expired. Please sign in again."
+        );
+
+        const returnTo =
+          `${window.location.pathname}${window.location.search}`;
+
+        router.push(
+          `/login?callbackURL=${encodeURIComponent(returnTo)}`
+        );
+
+        return;
+      }
+
+      const bookingData = {
+        studioId,
+        bookingDate,
+        startTime,
+        endTime,
+      };
+
       const response = await apiClient("/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(bookingData),
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => null);
+
+      if (response.status === 401) {
+        toast.error(
+          "Your authentication token is invalid or expired. Please sign in again."
+        );
+
+        const returnTo =
+          `${window.location.pathname}${window.location.search}`;
+
+        router.push(
+          `/login?callbackURL=${encodeURIComponent(returnTo)}`
+        );
+
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(
-          result.message || "Failed to create booking."
+          result?.message || "Failed to create booking."
         );
       }
 
